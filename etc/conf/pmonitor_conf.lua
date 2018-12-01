@@ -2,15 +2,15 @@
 -- Author: shineflag
 -- Date: 2017-10-10 10:50:34
 --
-local gdir="/data/gameserver/"
+local gdir="/deploy/server/PokerGo/run"
 return {
-	{name="日志进程", pname="LogServer",        pnum=1,   dir=gdir .. "LogServer/bin/",         sh="start.sh"},
-	{name="广播进程", pname="BroadcastServer",  pnum=1,   dir=gdir .. "BroadcastServer/bin/",   sh="start.sh"},
-	{name="金币落地", pname="GoldUpdateServer", pnum=1,   dir=gdir .. "GoldUpdateServer/bin/",  sh="start.sh"},
-	{name="金币进程", pname="MDataServer",      pnum=1,   dir=gdir .. "MDataServer/bin/",       sh="start.sh"},
-	{name="统计进程", pname="TJServer",         pnum=1,   dir=gdir .. "TJServer/bin/",          sh="start.sh"},
-	{name="用户进程", pname="UserServer",       pnum=10,  dir=gdir .. "UserServer/bin/",        sh="start.sh"},
-	{name="配桌进程", pname="AllocServer",      pnum=1,   dir=gdir .. "AllocServer/bin/",       sh="start.sh"},
-	{name="麻将进程", pname="MajiangServer",    pnum=3,   dir=gdir .. "MajiangServer/bin/",     sh="start.sh"},
-	{name="大厅进程", pname="HallServer",       pnum=1,   dir=gdir .. "HallServer/bin/",        sh="start.sh"},
+	{name="德州进程", pname="CZTexasServer",        pnum=1,   dir=gdir,         sh="run_texas.sh"},
+	{name="金币进程", pname="CZMoneyServer",        pnum=1,   dir=gdir ,        sh="run_money.sh"},
+	{name="比赛列表", pname="CZMatchListServer",    pnum=1,   dir=gdir,         sh="run_matchList.sh"},
+	{name="接入进程", pname="CZAccessServer",       pnum=1,   dir=gdir,         sh="run_access.sh"},
+	{name="俱乐部",   pname="CZClubServer",         pnum=1,   dir=gdir,         sh="run_club.sh"},
+	{name="游戏日志", pname="CZGamelogServer",      pnum=1,   dir=gdir,         sh="run_gamelog.sh"},
+	{name="通知服",   pname="CZNotifyServer",       pnum=1,   dir=gdir,         sh="run_notify.sh"},
+	{name="状态服",   pname="CZStateServer",        pnum=1,   dir=gdir,         sh="run_state.sh"},
+	{name="统计服",   pname="CZStatisticServer",    pnum=1,   dir=gdir,         sh="run_statistic.sh"},
 } 

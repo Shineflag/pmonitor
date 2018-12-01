@@ -76,3 +76,5 @@ luac.out
 *.dSYM/
 
 run/
+
+.vscode

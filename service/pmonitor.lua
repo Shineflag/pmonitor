@@ -47,7 +47,7 @@ function pmonitor.run_monitor()
 		for _, pc in pairs(pinfo) do 
 			pmonitor.process_monitor(pc)
 		end
-		skynet.sleep(1000)
+		skynet.sleep(500)
 	end
 end
 
