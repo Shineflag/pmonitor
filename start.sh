@@ -10,7 +10,7 @@ export DAEMON=false
 ##查找skynet的根目录
 if [ ! $SKYNET ]; then  
   echo "can't find skynet path!"
-  exit 1  
+  SKYNET=/data/skynet
 fi 
 
 ##生成 run目录

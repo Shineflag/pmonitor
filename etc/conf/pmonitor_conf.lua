@@ -2,7 +2,8 @@
 -- Author: shineflag
 -- Date: 2017-10-10 10:50:34
 --
-local gdir="/deploy/server/PokerGo/run"
+local gdir="/data/dp/run"
+-- local gdir="/deploy/server/PokerGo/run"
 return {
 	{name="德州进程", pname="CZTexasServer",        pnum=1,   dir=gdir,         sh="run_texas.sh"},
 	{name="金币进程", pname="CZMoneyServer",        pnum=1,   dir=gdir ,        sh="run_money.sh"},
