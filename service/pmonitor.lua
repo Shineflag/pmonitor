@@ -6,19 +6,22 @@
 
 local skynet = require "skynet"
 local log = require "log"
+local httpc = require "http.httpc"
+
 
 local TAG = "PMONITOR"
 local CMD = {}
 local pinfo = {} --所有监控进程的信息
 
 local pmonitor = {}  --与进程监控相关的逻辑函数
+local notify 
 
 --获取某种进程名称的数量 
 function pmonitor.pname_num( pname )
 	local cmd = string.format("ps -ef | grep %s | grep -v grep | wc -l",pname)
 	local f = io.popen(cmd)
 	local num = f:read()
-	log.d(TAG,"pname[%s] num is %s",pname,num)
+	-- log.d(TAG,"pname[%s] num is %s",pname,num)
 	f:close()
 	return tonumber(num)
 end
@@ -28,7 +31,17 @@ function pmonitor.process_restart( pc)
 	--log.d(TAG,"exec cmd[%s] ",cmd)
 	local result = os.execute(cmd)
 	log.d(TAG,"exec cmd[%s] result[%s] ",cmd, result)
-	return result
+
+	if notify then 
+		local respheader = {}
+		local path = string.format("%s?sername=%s&phone=%s",notify.path, pc.name, notify.phone)
+		log.d(TAG,"url:%s path:%s get:%s%s",notify.url, path, notify.url, path)
+		local status, body = httpc.get(notify.url, path, respheader)
+		log.d(TAG, "url:%s status:%s body:%s ", url, status, body)
+		return result
+	end 
+
+
 end
 
 function pmonitor.process_monitor( pc)
@@ -54,6 +67,10 @@ end
 --缓存麻将日志
 function CMD.init( )
 	pinfo = require("pmonitor_conf")
+	local ok, conf = pcall(require, "notify_conf")
+	if ok then 
+		notify = conf 
+	end 
 	pmonitor.run_monitor()
 end
 --]]
